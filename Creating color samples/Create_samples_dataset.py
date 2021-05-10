@@ -38,7 +38,6 @@ def creating_samples_dataset(data_path, target_path, df):
         file_name = files.split('.')
         id = file_name[0]
         row_index = df.index[df['id'] == id][0]
-        print('parent index: ', row_index)
         df.at[row_index, 'paths'] = target_path + files
         augmented_images = augment_dataset(image)
         rotation = 15
@@ -48,7 +47,6 @@ def creating_samples_dataset(data_path, target_path, df):
             augmented_path = target_path + augmented_id + '.jpg'
             cv2.imwrite(augmented_path, crop_augmented_image)
             row_index = df.index[df['id'] == augmented_id][0]
-            print('child index: ', row_index)
             df.at[row_index, 'paths'] = augmented_path
             rotation = rotation + 15
 
@@ -57,19 +55,13 @@ def creating_samples_dataset(data_path, target_path, df):
 
 green_banana_df = pd.read_csv('../Environmental captures/Green_banana.csv')
 green_banana_df['paths'] = ''
-
 green_segment_df = pd.read_csv('../Environmental captures/Green_segment.csv')
 green_segment_df['paths'] = ''
-
 market_segment_df = pd.read_csv('../Environmental captures/Market_segment.csv')
 market_segment_df['paths'] = ''
-
-
 green_banana_df = creating_samples_dataset('../Dataset/Green banana/', '../Color Samples Dataset/Green banana/', green_banana_df.copy())
-print(green_banana_df)
-#green_segment_df = creating_samples_dataset('../Dataset/Green segment/', '../Color Samples Dataset/Green segment/', green_segment_df.copy())
-#market_segment_df = creating_samples_dataset('../Dataset/Market segment/', '../Color Samples Dataset/Market segment/', market_segment_df.copy())
-#df = pd.concat([green_banana_df, green_segment_df,market_segment_df])
-#print(df)
-#df.to_csv('../Color Samples Dataset/dataset_register.csv')
-print('success')        
+green_segment_df = creating_samples_dataset('../Dataset/Green segment/', '../Color Samples Dataset/Green segment/', green_segment_df.copy())
+market_segment_df = creating_samples_dataset('../Dataset/Market segment/', '../Color Samples Dataset/Market segment/', market_segment_df.copy())
+df = pd.concat([green_banana_df, green_segment_df,market_segment_df])
+df.to_csv('../Color Samples Dataset/dataset_register.csv')
+print('success')

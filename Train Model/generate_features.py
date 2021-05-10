@@ -33,5 +33,5 @@ for image in images:
     images_features.append(features)
 np_features = np.array(images_features)
 np_features = np.squeeze(np_features)
-print(images_features[0])
 np.savetxt('./images_features.csv', np_features, delimiter=",", header='')
+print('Success...')
