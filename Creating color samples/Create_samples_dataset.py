@@ -27,9 +27,9 @@ def creating_samples_dataset(data_path, target_path, df):
         image_path = data_path + files
         image = cv2.imread(image_path)
         image = cv2.resize(image, (350,350))
-        image = cv2.GaussianBlur(image, (5, 5), cv2.BORDER_DEFAULT)
-        box_w = 100
-        box_h = 100
+        image = cv2.medianBlur(image,5)
+        box_w = 75
+        box_h = 75
         (cX, cY, _ , _) = get_image_center(image)
         x = (cX - 50) - box_w/2
         y = cY - box_h/2
@@ -59,9 +59,9 @@ green_segment_df = pd.read_csv('../Environmental captures/Green_segment.csv')
 green_segment_df['paths'] = ''
 market_segment_df = pd.read_csv('../Environmental captures/Market_segment.csv')
 market_segment_df['paths'] = ''
-green_banana_df = creating_samples_dataset('../Dataset/Green banana/', '../Color Samples Dataset/Green banana/', green_banana_df.copy())
-green_segment_df = creating_samples_dataset('../Dataset/Green segment/', '../Color Samples Dataset/Green segment/', green_segment_df.copy())
-market_segment_df = creating_samples_dataset('../Dataset/Market segment/', '../Color Samples Dataset/Market segment/', market_segment_df.copy())
+green_banana_df = creating_samples_dataset('../Dataset/Green banana/', '../../Color Samples Dataset/Green banana/', green_banana_df.copy())
+green_segment_df = creating_samples_dataset('../Dataset/Green segment/', '../../Color Samples Dataset/Green segment/', green_segment_df.copy())
+market_segment_df = creating_samples_dataset('../Dataset/Market segment/', '../../Color Samples Dataset/Market segment/', market_segment_df.copy())
 df = pd.concat([green_banana_df, green_segment_df,market_segment_df])
 df.to_csv('../Color Samples Dataset/dataset_register.csv')
 print('success')
