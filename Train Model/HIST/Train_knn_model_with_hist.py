@@ -43,15 +43,15 @@ def measuringPerformance(name, model, X, y, y_true, y_pred):
     print(f1_score(y, y_train_predict, average='weighted'))
 
 
-df_features = pd.read_csv('./rgb_features.csv', header=None)
+df_features = pd.read_csv('./image_hist_features.csv', header=None)
 df_paths = pd.read_csv('./dataset_register_with_classes_hist.csv')
 df = pd.concat([df_features, df_paths], axis = 1)
 df = df.sample(frac = 1)
 train_n = math.floor(df.shape[0] * 80 / 100)
 train_X = df.iloc[:train_n, ]
 test_X = df.iloc[train_n:, ]
-train_X_features = train_X.iloc[:, 0:3].to_numpy()
-test_X_features = test_X.iloc[:, 0:3].to_numpy()
+train_X_features = train_X.iloc[:, 0:768].to_numpy()
+test_X_features = test_X.iloc[:, 0:768].to_numpy()
 train_Y = df['class'][:train_n]
 test_Y = df['class'][train_n:]
 knn = KNeighborsClassifier(n_neighbors=11)

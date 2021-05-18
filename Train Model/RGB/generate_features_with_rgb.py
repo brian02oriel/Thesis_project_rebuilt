@@ -9,6 +9,7 @@ def get_features_image(src):
     src = src.reshape((src.shape[0] * src.shape[1], 3))
     return src[0], src[1], src[2]
 
+
 def get_images(paths):
     images = []
     for path in paths:
