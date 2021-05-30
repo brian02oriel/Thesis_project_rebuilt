@@ -27,6 +27,7 @@ def get_images(paths):
     images = []
     for path in paths:
         image = cv2.imread(path)
+        image = cv2.resize(image, (150, 150))
         if(image is None):
             print('Could not open or find the image')
             exit(0)
@@ -36,13 +37,13 @@ def get_images(paths):
 df = pd.read_csv('../../Full Samples Dataset/dataset_register.csv')
 paths = df['paths']
 images = get_images(paths)
-rgb_features = []
+bgr_features = []
 
 for i, image in enumerate(images):
-    r, g, b = get_features_rgb(image, str(i))
-    rgb_feature = r + g + b
-    rgb_features.append(rgb_feature)
-rgb_features = np.array(rgb_features)
-rgb_features = np.squeeze(rgb_features)
-np.savetxt('./image_hist_features.csv', rgb_features, delimiter=",", header='')
+    b, g, r = get_features_rgb(image, str(i))
+    bgr_feature = b + g + r
+    bgr_features.append(bgr_feature)
+bgr_features = np.array(bgr_features)
+bgr_features = np.squeeze(bgr_features)
+np.savetxt('./image_hist_features.csv', bgr_features, delimiter=",", header='')
 print('Success...')
