@@ -34,7 +34,7 @@ svr = SVR().fit(X_train, y_train)
 prediction = svr.predict(X_test)
 print(prediction)
 measure_regressor_error(y_test, prediction)
-joblib.dump(svr, 'svr_regressor.joblib')
+joblib.dump(svr, 'svr_regressor_sample.joblib')
 print('success...')
 
 

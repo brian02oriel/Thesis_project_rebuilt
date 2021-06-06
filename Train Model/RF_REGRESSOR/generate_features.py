@@ -10,6 +10,9 @@ def get_features_rgb(src, i):
     src_row3 = cv2.hconcat([src, src, src, src])
     src_row4 = cv2.hconcat([src, src, src, src])
     src = cv2.vconcat([src_row1, src_row2, src_row3, src_row4])
+    cv2.imshow("input framed", src)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
     cv2.imwrite('./Frame_generated/' + i + '.jpg', src)
     src_count = src.size
     histSize = 256
@@ -34,7 +37,7 @@ def get_images(paths):
         images.append(image)
     return images
 
-df = pd.read_csv('../../Full Samples Dataset/dataset_register.csv')
+df = pd.read_csv('../../Color Samples Dataset/dataset_register.csv')
 paths = df['paths']
 images = get_images(paths)
 bgr_features = []

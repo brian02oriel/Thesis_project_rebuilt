@@ -56,7 +56,7 @@ mlp.fit(X_train, y_train)
 prediction = mlp.predict(X_test)
 print(prediction)
 measure_regressor_error(y_test, prediction)
-joblib.dump(mlp, 'mlp_regressor.joblib')
+joblib.dump(mlp, 'mlp_regressor_sample.joblib')
 print('success...')
 
 

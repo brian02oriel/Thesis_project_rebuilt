@@ -51,7 +51,7 @@ rf.fit(X_train, y_train)
 prediction = rf.predict(X_test)
 print(prediction)
 measure_regressor_error(y_test, prediction)
-joblib.dump(rf, 'rf_regressor.joblib')
+joblib.dump(rf, 'rf_regressor_sample.joblib')
 print('success...')
 
 
