@@ -19,7 +19,7 @@ def days_between(d1, d2):
     return abs((d2 - d1).days)
 
 df_features = pd.read_csv('./image_hist_features.csv', header=None)
-df_paths = pd.read_csv('../../Full Samples Without Rotation/dataset_register.csv')
+df_paths = pd.read_csv('../../Full Samples Dataset/dataset_register.csv')
 
 days_difference = []
 for index, row in df_paths.copy().iterrows():
@@ -34,7 +34,7 @@ svr = SVR().fit(X_train, y_train)
 prediction = svr.predict(X_test)
 print(prediction)
 measure_regressor_error(y_test, prediction)
-joblib.dump(svr, 'svr_regressor_no_rotation.joblib')
+joblib.dump(svr, 'svr_regressor.joblib')
 print('success...')
 
 

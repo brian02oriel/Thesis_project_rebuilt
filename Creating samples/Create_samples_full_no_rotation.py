@@ -47,5 +47,5 @@ green_banana_df = creating_samples_dataset('../Dataset/Green banana/', '../Full 
 green_segment_df = creating_samples_dataset('../Dataset/Green segment/', '../Full Samples Without Rotation/Green segment/', green_segment_df.copy())
 market_segment_df = creating_samples_dataset('../Dataset/Market segment/', '../Full Samples Without Rotation/Market segment/', market_segment_df.copy())
 df = pd.concat([green_banana_df, green_segment_df,market_segment_df])
-df.to_csv('../Full Samples Without Rotation/dataset_register_no_rotation.csv')
+df.to_csv('../Full Samples Without Rotation/dataset_register.csv')
 print('success')

@@ -28,7 +28,7 @@ def display(parameters, mlp, X_train,y_train):
 
 
 df_features = pd.read_csv('./image_hist_features.csv', header=None)
-df_paths = pd.read_csv('../../Full Samples Without Rotation/dataset_register.csv')
+df_paths = pd.read_csv('../../Full Samples Dataset/dataset_register.csv')
 
 days_difference = []
 for index, row in df_paths.copy().iterrows():

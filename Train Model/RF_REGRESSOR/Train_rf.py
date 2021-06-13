@@ -28,7 +28,7 @@ def display(parameters, rf, X_train,y_train):
 
 
 df_features = pd.read_csv('./image_hist_features.csv', header=None)
-df_paths = pd.read_csv('../../Full Samples Without Rotation/dataset_register.csv')
+df_paths = pd.read_csv('../../Full Samples Dataset/dataset_register.csv')
 
 days_difference = []
 for index, row in df_paths.copy().iterrows():
@@ -49,9 +49,9 @@ best_params = display(parameters, rf, X_train,y_train)
 rf = RandomForestRegressor(max_depth=best_params.get('max_depth'), n_estimators=best_params.get('n_estimators'))
 rf.fit(X_train, y_train)
 prediction = rf.predict(X_test)
-print(prediction)
+#print(prediction)
 measure_regressor_error(y_test, prediction)
-joblib.dump(rf, 'rf_regressor_no_rotation.joblib')
+joblib.dump(rf, 'rf_regressor.joblib')
 print('success...')
 
 

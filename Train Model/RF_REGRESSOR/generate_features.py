@@ -37,7 +37,7 @@ def get_images(paths):
         images.append(image)
     return images
 
-df = pd.read_csv('../../Full Samples Without Rotation/dataset_register.csv')
+df = pd.read_csv('../../Full Samples Dataset/dataset_register.csv')
 paths = df['paths']
 images = get_images(paths)
 bgr_features = []

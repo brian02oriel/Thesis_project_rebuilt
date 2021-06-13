@@ -28,6 +28,8 @@ def creating_samples_dataset(data_path, target_path, df):
         image = cv2.imread(image_path)
         image = cv2.resize(image, (350,350))
         image = cv2.medianBlur(image,5)
+        #print('target: ', target_path + files)
+        #cv2.imshow('im', image)
         cv2.imwrite(target_path + files, image)
         file_name = files.split('.')
         id = file_name[0]
@@ -37,12 +39,17 @@ def creating_samples_dataset(data_path, target_path, df):
         rotation = 15
         for augmented_image in augmented_images:
             augmented_id = str(id) + '_'  + str(rotation)
-            augmented_path = '../' + target_path + augmented_id + '.jpg'
+            augmented_path = target_path + augmented_id + '.jpg'
+            #cv2.imshow('augmented', augmented_image)
+            #print('augmented: ', augmented_path)
             cv2.imwrite(augmented_path, augmented_image)
             row_index = df.index[df['id'] == augmented_id][0]
-            df.at[row_index, 'paths'] = augmented_path
+            df.at[row_index, 'paths'] = '../' + augmented_path
             rotation = rotation + 15
+            #cv2.waitKey(0)
+            #cv2.destroyAllWindows()
 
+     
 
     return df
 
